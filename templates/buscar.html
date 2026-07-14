@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Busca de Vagas{% endblock %}
+
+{% block content %}
+  <h2 class="mb-4">Resultados da busca por: "{{ termo }}"</h2>
+
+  <div class="row">
+    {% for vaga in vagas %}
+    <div class="col-md-6 mb-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ vaga.titulo }}</h5>
+          <p class="card-text">
+            <strong>Empresa:</strong> {{ vaga.empresa }} <br>
+            <strong>Região:</strong> {{ vaga.regiao }}
+          </p>
+          <p>
+            <small class="text-muted">
+              Fonte: {{ vaga.fonte }} | Setor: {{ vaga.setor }}
+            </small>
+          </p>
+          <a href="/detalhes?titulo={{ vaga.titulo }}&empresa={{ vaga.empresa }}&regiao={{ vaga.regiao }}&fonte={{ vaga.fonte }}&setor={{ vaga.setor }}&link={{ vaga.link }}" class="btn btn-outline-primary">Detalhes da Vaga</a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="alert alert-info">Nenhuma vaga encontrada para o termo pesquisado.</div>
+    {% endfor %}
+  </div>
+
+  <a href="/" class="btn btn-secondary mt-3">Voltar</a>
+{% endblock %}

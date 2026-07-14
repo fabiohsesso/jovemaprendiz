@@ -1,1 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Portal de Vagas Jovem Aprendiz{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body { background-color: #f8f9fa; }
+    footer { margin-top: 40px; padding: 20px; background: #343a40; color: #fff; text-align: center; }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="/">Jovem Aprendiz</a>
+    </div>
+  </nav>
 
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+
+  <footer>
+    <p>© 2026 Portal de Vagas Jovem Aprendiz | Dados de fontes oficiais</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes da Vaga{% endblock %}
+
+{% block content %}
+  <h2 class="mb-4">Detalhes da Vaga</h2>
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title">{{ titulo }}</h5>
+      <p class="card-text">
+        <strong>Empresa:</strong> {{ empresa }} <br>
+        <strong>Região:</strong> {{ regiao }} <br>
+        <strong>Fonte:</strong> {{ fonte }} <br>
+        <strong>Setor:</strong> {{ setor }}
+      </p>
+      <a href="{{ link }}" target="_blank" class="btn btn-primary">Ver vaga oficial</a>
+      <a href="/" class="btn btn-secondary">Voltar</a>
+    </div>
+  </div>
+{% endblock %}

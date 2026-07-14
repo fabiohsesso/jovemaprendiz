@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Central de Vagas Jovem Aprendiz{% endblock %}
+
+{% block content %}
+  <h1 class="text-center mb-4">Central de Vagas Jovem Aprendiz</h1>
+    
+  <!-- Filtro dinâmico -->
+  <form method="POST" class="mb-4">
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <select name="regiao" class="form-select">
+          <option value="todas" {% if filtro == "todas" %}selected{% endif %}>Todas as regiões</option>
+          {% for regiao in regioes %}
+          <option value="{{ regiao }}" {% if filtro == regiao %}selected{% endif %}>{{ regiao }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary w-100">Filtrar</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Busca por palavra-chave -->
+  <form method="POST" action="/buscar" class="mb-4">
+    <div class="row">
+      <div class="col-md-6">
+        <input type="text" name="termo" class="form-control" placeholder="Buscar por palavra-chave (ex: administrativo, produção, atendimento)">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-success w-100">Buscar</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Lista de vagas -->
+  <div class="row">
+    {% for vaga in vagas %}
+    <div class="col-md-6 mb-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ vaga.titulo }}</h5>
+          <p class="card-text">
+            <strong>Empresa:</strong> {{ vaga.empresa }} <br>
+            <strong>Região:</strong> {{ vaga.regiao }}
+          </p>
+          <p>
+            <small class="text-muted">
+              Fonte: {{ vaga.fonte }} | Setor: {{ vaga.setor }}
+            </small>
+          </p>
+          <a href="/detalhes?titulo={{ vaga.titulo }}&empresa={{ vaga.empresa }}&regiao={{ vaga.regiao }}&fonte={{ vaga.fonte }}&setor={{ vaga.setor }}&link={{ vaga.link }}" class="btn btn-outline-primary">Ver detalhes</a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="alert alert-info">Nenhuma vaga encontrada para o filtro selecionado.</div>
+    {% endfor %}
+  </div>
+
+  <!-- Aviso de segurança -->
+  <div class="alert alert-warning mt-4">
+    ⚠️ Caso alguma vaga contenha dados sensíveis, você será informado antes de prosseguir.
+  </div>
+{% endblock %}
